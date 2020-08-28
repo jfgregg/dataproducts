@@ -1,0 +1,46 @@
+---
+title: "Interactive Plot With Plotly"
+author: "J Gregg"
+date: "25/08/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+library(lubridate)
+```
+
+## Slide with Plot
+
+```{r sport}
+timeseries <- read.csv("./googlesearch.csv")
+timeseries$Week <- as.POSIXct(strptime(timeseries$Week, "%d/%m/%Y"))
+Date <- rep(timeseries$Week,2)
+Sport <- rep(c("football","cricket"), each = nrow(timeseries))
+RelPop <- c(timeseries$Football,timeseries$Cricket) 
+data <- data.frame(Date, RelPop, Sport)
+name = c("Men's Football WC", "Women's Football WC", "Men's Cricket WC")
+WCFinalFootball <- as.POSIXct(strptime("15/07/2018","%d/%m/%Y"))
+WCFinalCricket <- as.POSIXct(strptime("14/07/2019","%d/%m/%Y"))
+WCFinalFootballWomen <- as.POSIXct(strptime("07/07/2019","%d/%m/%Y"))
+StartFootballMen <- as.POSIXct(strptime("14/06/2018","%d/%m/%Y"))
+StartCricketMen <- as.POSIXct(strptime("30/05/2019","%d/%m/%Y"))
+StartFootballWomen <- as.POSIXct(strptime("07/06/2019","%d/%m/%Y"))
+start <- c(StartFootballMen,StartFootballWomen,StartCricketMen)
+end <- c(WCFinalFootball,WCFinalFootballWomen,WCFinalCricket)
+events <- data.frame(name, start,end)
+
+g <- ggplot(data) + 
+## geom_rect(aes(xmin = start, xmax = end, fill = name),ymin = -Inf, ymax = Inf, alpha = 0.3, data = events) + 
+geom_vline(aes(xintercept = as.numeric(end),colour = name), data = events, alpha = 0.5) +
+geom_text(aes(x = end, y = c(2,6,10), label = name, colour = name),data = events, size = 3, vjust = 0) + 
+geom_line(aes(Date, RelPop, colour = Sport))
+g <- g + xlim(as.POSIXct(strptime("01/05/2018","%d/%m/%Y")),as.POSIXct(strptime("01/10/2019","%d/%m/%Y")))
+g <- g + xlab("Date") + ylab("Relative Number of Searches")
+gp <- ggplotly(g) %>%
+  layout(showlegend=FALSE)
+gp
+```
+
+

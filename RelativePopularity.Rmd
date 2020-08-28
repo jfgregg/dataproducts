@@ -1,0 +1,48 @@
+---
+title: "Sports Popularity Identified throug Google Searches"
+author: "J Gregg"
+date: "27/08/2020"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(plotly)
+library(lubridate)
+```
+
+## Football vs Cricket
+
+- The [Google Trends](https://trends.google.com/trends/?geo=US) website allows you to see the relative popularity of different search terms through time. 
+- I collected data from May 2017 to the present day on Worldwide searches for 'Football' and 'Cricket'
+- The next slide shows how the popularity of these searches has varied over this time period.
+
+## Football vs Cricket
+
+```{r}
+
+timeseries <- read.csv("./googlesearch2.csv")
+timeseries$Week <- as.POSIXct(strptime(timeseries$Week, "%d/%m/%Y"))
+
+WCFinalFootball <- as.POSIXct(strptime("15/07/2018","%d/%m/%Y"))
+WCFinalCricket <- as.POSIXct(strptime("14/07/2019","%d/%m/%Y"))
+StartFootballMen <- as.POSIXct(strptime("14/06/2018","%d/%m/%Y"))
+StartCricketMen <- as.POSIXct(strptime("30/05/2019","%d/%m/%Y"))
+WCFinalFootballWomen <- as.POSIXct(strptime("07/07/2019","%d/%m/%Y"))
+StartFootballWomen <- as.POSIXct(strptime("07/06/2019","%d/%m/%Y"))
+WCFinalCricketWomen <- as.POSIXct(strptime("23/07/2017","%d/%m/%Y"))
+StartCricketWomen <- as.POSIXct(strptime("24/06/2017","%d/%m/%Y"))
+
+
+fig <- plot_ly(timeseries, x = ~Week, y = ~Football, type = 'scatter', mode = 'lines', name = "Football") %>%
+  add_trace(y = ~Cricket, name = "Cricket") %>%
+  layout(legend=list(x = 0.8, y = 0.9, title=list(text='<b> Sport </b>')), xaxis = list(title = "Date"), yaxis = list(title = "Relative Number of Google Searches")) %>%
+  add_polygons(x = c(StartCricketMen,StartCricketMen,WCFinalCricket,WCFinalCricket), y = c(0,100,100,0), color = I("red") ,opacity = 0.3, line=list(width=1,color="red"), name = "Men's Cricket WC") %>%
+  add_polygons(x = c(StartFootballMen,StartFootballMen,WCFinalFootball,WCFinalFootball), y = c(0,100,100,0), color = I("green") ,opacity = 0.3, line=list(width=1,color="green"), name = "Men's Football WC") %>%
+  add_polygons(x = c(StartFootballWomen,StartFootballWomen,WCFinalFootballWomen,WCFinalFootballWomen), y = c(0,100,100,0), color = I("yellow") ,opacity = 0.5, line=list(width=1,color="yellow"), name = "Womens's Football WC") %>%
+  add_polygons(x = c(StartCricketWomen,StartCricketWomen,WCFinalCricketWomen,WCFinalCricketWomen), y = c(0,100,100,0), color = I("blue") ,opacity = 0.3, line=list(width=1,color="blue"), name = "Womens's Cricket WC")
+fig
+  
+```
+
+data from [https://trends.google.com/trends/?geo=US](https://trends.google.com/trends/?geo=US)
