@@ -25,7 +25,7 @@ shinyUI(fluidPage(
                         max = 2000,
                         value = 200),
             numericInput("Height",
-                         "Cieling Height (m):",
+                         "Ceiling Height (m):",
                          min = 1,
                          max = 10,
                          value = 3),
@@ -53,10 +53,10 @@ shinyUI(fluidPage(
             ),
     
                      
-                     
         # Show a plot of the risk over time
         mainPanel(
             tabsetPanel(type = "tabs",
+                        tabPanel("Instructions",br(), includeHTML('./AIRCalcDocumentation.html')),
                         tabPanel("Risk Plot", br(), plotlyOutput("riskplot")),
                         tabPanel("Repeated Risks", br(), textOutput("timerisk"), 
                                  textOutput("tenrisk"),

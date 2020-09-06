@@ -1,0 +1,10 @@
+name: aircalculator
+title:
+username:
+account: jfgregg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2760731
+bundleId: 3598763
+url: https://jfgregg.shinyapps.io/aircalculator/
+when: 1599395755.90501
