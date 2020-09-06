@@ -373,44 +373,15 @@ summary {
 <div id="airborne-infection-risk-and-covid-19" class="section level2">
 <h2>Airborne Infection Risk and Covid 19</h2>
 <p>The Airborne Infection Risk application is designed to give an idea of the risk of contracting SARS-CoV-2 in an enclosed space. It is based on the data in the spreadsheet given at the following link <a href="https://www.unicas.it/siti/laboratori/lami-laboratorio-di-misure-industriali-sezione-meccanica/airborne-infection-risk-calculator.aspx" class="uri">https://www.unicas.it/siti/laboratori/lami-laboratorio-di-misure-industriali-sezione-meccanica/airborne-infection-risk-calculator.aspx</a> and relies on the work done by Giorgio Buonanno, Luca Stabile, Lidia Morawska.</p>
-<div id="parameters-in-the-calculation" class="section level3">
-<h3>Parameters in the calculation</h3>
 <p>The parameters used in the calculation are</p>
-<div id="room-area-in-m2-and-ceiling-height-in-metres." class="section level4">
-<h4>Room Area in <span class="math inline">\(m^2\)</span> and Ceiling Height in metres.</h4>
-<p>Used to calculate the volume of the room. Larger rooms allow people to spread out and contain more air, therefore reducing the concentration of virus particles.</p>
-</div>
-<div id="number-of-people-and-current-infection-rate-per-100000-people." class="section level4">
-<h4>Number of people and Current Infection Rate per 100,000 people.</h4>
-<p>These numbers are used to assess the likelihood of an infected individual being in the room. The excel spreadsheet on which this projet is based assumes either one or two infected individuals. These numbers try to account for the fact that if the current number of infections in an area is low the risk of becoming infected is reduced.</p>
-</div>
-<div id="activity-of-participants" class="section level4">
-<h4>Activity of Participants</h4>
-<p>There are four options here,</p>
-<ul>
-<li>Resting</li>
-<li>Standing</li>
-<li>Light Exercise</li>
-<li>Heavy Exercise</li>
-</ul>
-<p>and they effect rates of inhalation and exhalation. It is assumed that all participants are performing the same activity and talking at a normal volume as they do it.</p>
-</div>
-<div id="length-of-activity-in-minutes" class="section level4">
-<h4>Length of Activity (in minutes)</h4>
-<p>This information will be used to assess the risk of infection after a set time.</p>
-</div>
-</div>
-<div id="outputs" class="section level3">
-<h3>Outputs</h3>
-<div id="risk-plot" class="section level4">
-<h4>Risk plot</h4>
-<p>This shows the cumulative risk over eight hours performing an activity under the set parameters. The vertical line is positioned at the length of activity selected.</p>
-</div>
-<div id="repeated-risks" class="section level4">
-<h4>Repeated Risks</h4>
-<p>This assumes that every repetition of an activity is an independent event (this simplification may give overly pessimistic values here). Based on this assumption you can see what your risk of infection is after ten repetitions of an event and how many times you must perform an activity to have a 1% risk of infection. This is designed to highlight that even activities with low individual risk if repeated give a larger cumulative risk over a period of time.</p>
-</div>
-</div>
+<ol style="list-style-type: decimal">
+<li><p>Room Area in <span class="math inline">\(m^2\)</span> and Ceiling Height in metres. Used to calculate the volume of the room. Larger rooms allow people to spread out and contain more air, therefore reducing the concentration of virus particles.</p></li>
+<li><p>Number of people and Current Infection Rate per 100,000 people. These numbers are used to assess the likelihood of an infected individual being in the room. The excel spreadsheet on which this projet is based assumes either one or two infected individuals. These numbers try to account for the fact that if the current number of infections in an area is low the risk of becoming infected is reduced.</p></li>
+<li><p>Activity of Participants. There are four options here (Resting, Standing, Light Exercise and Heavy Exercise) and they effect rates of inhalation and exhalation. It is assumed that all participants are performing the same activity and talking at a normal volume as they do it.</p></li>
+<li><p>Length of Activity (in minutes). This information will be used to assess the risk of infection after a set time.</p></li>
+</ol>
+<p>The Risk Plot shows the cumulative risk over eight hours performing an activity under the set parameters. The vertical line is positioned at the length of activity selected.</p>
+<p>The Repeated Risk tab assumes that every repetition of an activity is an independent event (this simplification may give overly pessimistic values here). Based on this assumption you can see what your risk of infection is after ten repetitions of an event and how many times you must perform an activity to have a 1% risk of infection. This is designed to highlight that even activities with low individual risk if repeated give a larger cumulative risk over a period of time.</p>
 </div>
 
 

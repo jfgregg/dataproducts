@@ -56,12 +56,12 @@ shinyUI(fluidPage(
         # Show a plot of the risk over time
         mainPanel(
             tabsetPanel(type = "tabs",
-                        tabPanel("Instructions",br(), includeHTML('./AIRCalcDocumentation.html')),
+                        tabPanel("Instructions",br(), includeMarkdown("./AIRCalcDocumentation.Rmd")),
                         tabPanel("Risk Plot", br(), plotlyOutput("riskplot")),
                         tabPanel("Repeated Risks", br(), textOutput("timerisk"), 
                                  textOutput("tenrisk"),
                                  textOutput("oneprisk"))
-            )
+                  )
         )
     ) 
 ))
