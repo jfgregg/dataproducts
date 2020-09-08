@@ -77,7 +77,7 @@ shinyServer(function(input, output) {
     output$tenrisk <- renderText({
         
         timestep <- input$duration + 1
-        risk <- round(1 - pbinom(prob = model()$risk[timestep],0,size = 10),3)
+        risk <- round(1 - pbinom(prob = (model()$risk[timestep]/100),0,size = 10),3)*100
         tenrisk <- paste("The risk of infection if you do this activity 10 times is", as.character(risk), "%")
     })
     

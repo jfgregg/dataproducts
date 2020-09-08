@@ -1,0 +1,48 @@
+---
+title: "AIR Calculator"
+author: "J Gregg"
+date: "08/09/2020"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Credits and Motivation
+
+This application has been inspired by the information at the following website <https://www.unicas.it/siti/laboratori/lami-laboratorio-di-misure-industriali-sezione-meccanica/airborne-infection-risk-calculator.aspx> and relies on the work done by Giorgio Buonanno, Luca Stabile, Lidia Morawska.
+
+As many countries ask people to return to work after lockdowns, people will find themselves in enclosed spaces and in larger groups. This poses a risk of infection with CoV-SARS-2 and the risk calculator aims to help quantify some of these risks as well as identify factors that can reduce risk
+
+## Factors that effect risk of infection
+
+The model is a simplified version of the spreadhsheet cited which does not rely on specialist knowledge of the room you are in. Certain assumptions are made about the quality of ventilation.
+
+This leaves
+
+- Room Volume (Calculated from Area and Height)
+- Activity of occupants
+- Length of activity
+
+as factors determining risk. 
+
+Ths risk plot shows how the risk to an individual increases over an eight-hour period, and by changing parameters it is possible to identify how resting in a large room poses a significantly different risk in comparison to performing exercise in a large room.
+
+## Inclusion of probabilities
+
+While simplifying some factors, the app attempts to show how the prevalence of coronavirus infections in the population and the number of people in the room also effect the risk of infection to an individual. This adds a probabilistic element to the model which shows how when infections are low, certain activities may become feasible but in a population with a high infection rate the risks may become unreasonable. It can help to understand decisions such as closing schools, offices and restaurants.
+
+## Repeated Risks
+
+Finall, a binomial model tries to show that while a single event may have a low risk by repeating this event the risk increases.
+
+For example if the probability of infection is 0.1%, but an event is repeated 100 times.
+
+```{r repeated}
+avoid <- pbinom(prob = 0.001, size = 100, q = 0)
+infected <- 1 - avoid
+infected
+```
+
+The probability of being infected is is now 9.5%
